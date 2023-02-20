@@ -308,17 +308,17 @@ GC最基础的算法有三种： 标记 -清除算法、复制算法、标记-�
 详情查看此文:[jvm调优](https://baidaguo.blog.csdn.net/article/details/121397268?spm=1001.2014.3001.5502)
 Sun JDK监控和故障处理命令有
 
-> **jps:**JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。
+> **jps:** JVM Process Status Tool,显示指定系统内所有的HotSpot虚拟机进程。
 >
-> **jstat:**JVM statistics Monitoring是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。
+> **jstat:** JVM statistics Monitoring是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。
 >
-> **jmap:**JVM Memory Map命令用于生成heap dump文件
+> **jmap:** JVM Memory Map命令用于生成heap dump文件
 >
-> **jhat:**JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看<
+> **jhat: **JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看<
 >
-> **jstack:**用于生成java虚拟机当前时刻的线程快照。
+> **jstack:** 用于生成java虚拟机当前时刻的线程快照。
 >
-> **jinfo**JVM Configuration info 这个命令作用是实时查看和调整虚拟机运行参数。
+> **jinfo： **JVM Configuration info 这个命令作用是实时查看和调整虚拟机运行参数。
 
 ### 2.17.调优工具
 
