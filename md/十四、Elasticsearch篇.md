@@ -124,8 +124,8 @@ lucene 从 4+版本后开始大量使用的数据结构是 FST。FST 有两个�
 题外话：获取节点 id 的方法。
 
 ```xml
-1GET /_cat/nodes?v&h=ip,port,heapPercent,heapMax,id,name
-2ip port heapPercent heapMax id name
+GET /_cat/nodes?v&h=ip,port,heapPercent,heapMax,id,name
+ip port heapPercent heapMax id name
 ```
 
 ### 14.5.详细描述一下 Elasticsearch 索引文档的过程
