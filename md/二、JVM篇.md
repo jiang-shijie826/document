@@ -112,13 +112,9 @@ b、ZGC算法
 
 **roots标记：**标记root对象,会StopTheWorld.
 
-**并发标记：**利用读屏障与应用线程一起运行标记,可能会发生StopTheWorld.
+**并发标记：**利用读屏障与应用线程一起运行标记,可能会发生StopTheWorld.清除会清理标记为不可用的对象.
 
-清除会清理标记为不可用的对象.
-
-**roots重定位：**是对存活的对象进行移动,以腾出大块内存空间,减少碎片产生.重定位最开始会StopTheWorld,取决于重定位集与对象总活动集的比例.
-
-并发重定位与并发标记类似.
+**roots重定位：**是对存活的对象进行移动,以腾出大块内存空间,减少碎片产生.重定位最开始会StopTheWorld,取决于重定位集与对象总活动集的比例.并发重定位与并发标记类似.
 
 ### 2.4.简述一下JVM的内存模型
 
@@ -191,7 +187,8 @@ JVM定义了不同运行时数据区，他们是用来执行应用程序的。�
 
 **2.Permanet Generation空间满**
 
-PermanetGeneration中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。如果经过Full GC仍然回收不了，那么JVM会抛出如下错误信息：java.lang.OutOfMemoryError: PermGen space<br>
+PermanetGeneration中存放的为一些class的信息等，当系统中要加载的类、反射的类和调用的方法较多时，Permanet Generation可能会被占满，在未配置为采用CMS GC的情况下会执行Full GC。如果经过Full GC仍然回收不了，那么JVM会抛出如下错误信息：java.lang.OutOfMemoryError: PermGen space
+
 为避免Perm Gen占满造成Full GC现象，可采用的方法为增大Perm Gen空间或转为使用CMS GC。
 
 **3.CMS GC时出现promotion failed和concurrent mode failure**
@@ -214,7 +211,7 @@ Java虚拟机是一个可以执行Java字节码的虚拟机进程。Java源文�
 
 ### 2.8.Java内存结构
 
-方法区和堆是所有线程共享的内存区域；而java栈、本地方法栈和程序员计数器是运行是线程私有的内存区域。
+方法区和堆是所有线程共享的内存区域；而java栈、本地方法栈和程序员计数器是运行时线程私有的内存区域。
 
 > Java堆(Heap):是Java虚拟机所管理的内存中最大的一块。Java堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。此内存区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。
 >
@@ -314,7 +311,7 @@ Sun JDK监控和故障处理命令有
 >
 > **jmap:** JVM Memory Map命令用于生成heap dump文件
 >
-> **jhat: **JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看<
+> **jhat: **JVM Heap Analysis Tool命令是与jmap搭配使用，用来分析jmap生成的dump，jhat内置了一个微型的HTTP/HTML服务器，生成dump的分析结果后，可以在浏览器中查看
 >
 > **jstack:** 用于生成java虚拟机当前时刻的线程快照。
 >
@@ -366,9 +363,9 @@ Sun JDK监控和故障处理命令有
 
 主要有一下四种类加载器:
 
-1. 启动类加载器(Bootstrap ClassLoader)用来加载java核心类库，无法被java程序直接引用。
+1. 启动类加载器(Bootstrap ClassLoader):用来加载java核心类库，无法被java程序直接引用。
 2. 扩展类加载器(extensions class loader):它用来加载 Java 的扩展库。Java 虚拟机的实现会提供一个扩展库目录。该类加载器在此目录里面查找并加载 Java 类。
-3. 系统类加载器（system class loader）：它根据 Java 应用的类路径(CLASSPATH）来加载 Java类。一般来说，Java 应用的类都是由它来完成加载的。可以通过ClassLoader.getSystemClassLoader()来获取它。
+3. 系统类加载器(system class loader):它根据 Java 应用的类路径(CLASSPATH）来加载 Java类。一般来说，Java 应用的类都是由它来完成加载的。可以通过ClassLoader.getSystemClassLoader()来获取它。
 4. 用户自定义类加载器，通过继承 java.lang.ClassLoader类的方式实现。
 
 * **由不同的类加载器加载的指定类型还是相同的类型吗（不同）**
