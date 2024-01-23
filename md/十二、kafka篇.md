@@ -22,7 +22,7 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topicHello-Kafka --fr
 
 ### 12.3.consumer 是推还是拉？
 
-> Kafka 最初考虑的问题是，customer 应该从 brokes 拉取消息还是 brokers 将消息推送到 consumer，也就是 pull 还 push。在这方面，Kafka 遵循了一种大部分消息系统共同的传统的设计：producer 将消息推送到 broker，consumer 从broker 拉取消息。
+> Kafka 最初考虑的问题是，customer 应该从 brokers 拉取消息还是 brokers 将消息推送到 consumer，也就是 pull 还 push。在这方面，Kafka 遵循了一种大部分消息系统共同的传统的设计：producer 将消息推送到 broker，consumer 从broker 拉取消息。
 >
 > 一些消息系统比如 Scribe 和 Apache Flume 采用了 push 模式，将消息推送到下游的 consumer。这样做有好处也有坏处：由 broker 决定消息推送的速率，对于不同消费速率的 consumer 就不太好处理了。消息系统都致力于让 consumer 以最大的速率最快速的消费消息，但不幸的是，push 模式下，当broker 推送的速率远大于 consumer 消费的速率时，consumer 恐怕就要崩溃了。最终 Kafka 还是选取了传统的 pull 模式。
 >
@@ -32,7 +32,7 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topicHello-Kafka --fr
 
 ### 12.4.讲一下主从同步
 
-* Kafka允许topic的分区拥有若干副本，这个数量是可以配置的，你可以为每个topci配置副本的数量。
+* Kafka允许topic的分区拥有若干副本，这个数量是可以配置的，你可以为每个topic配置副本的数量。
 * Kafka会自动在每个个副本上备份数据，所以当一个节点down掉时数据依然是可用的。
 * Kafka的副本功能不是必须的，你可以配置只有一个副本，这样其实就相当于只有一份数据。
 
@@ -44,7 +44,7 @@ bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topicHello-Kafka --fr
 >
 > （2）冗余：
 >
-> 消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险。许多消息队列所采用的”插入-获取-删   除”范式中，在把一个消息从队列中删除之前，需要你的处理系统明确的指出该消息已经被处理完毕，从而确保你的数据被安全的保存直到你使用完毕。
+> 消息队列把数据进行持久化直到它们已经被完全处理，通过这一方式规避了数据丢失风险。许多消息队列所采用的”插入-获取-删除”范式中，在把一个消息从队列中删除之前，需要你的处理系统明确的指出该消息已经被处理完毕，从而确保你的数据被安全的保存直到你使用完毕。
 >
 > （3）扩展性：
 >
@@ -108,7 +108,7 @@ request.required.acks 有三个值 0 1 -1(all)
 >
 > 1：服务端会等待 ack 值 leader 副本确认接收到消息后发送 ack 但是如果 leader挂掉后他不确保是否复制完成新 leader 也会导致数据丢失。
 >
-> -1(all)：服务端会等所有的 follower 的副本受到数据后才会受到 leader 发出的ack，这样数据不会丢失
+> -1(all)：服务端会等所有的 follower 的副本收到数据后才会受到 leader 发出的ack，这样数据不会丢失
 
 ### 12.10.消费者如何不自动提交偏移量，由应用提交？
 
