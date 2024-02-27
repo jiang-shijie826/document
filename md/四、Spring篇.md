@@ -18,9 +18,10 @@ Spring 的IOC容器是Spring 的核心，Spring  AOP是Spring 框架的重要组
 
 Spring  IOC初始化流程
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/426df75de548403a89426cf3d28e65b0.png)
+![Spring  IOC初始化流程](https://img-blog.csdnimg.cn/426df75de548403a89426cf3d28e65b0.png)
 
-**AOP:面向切面编程。（Aspect-Oriented Programming）**<br>
+**AOP:面向切面编程。（Aspect-Oriented Programming）**
+
 **AOP可以说是对OOP的补充和完善。OOP引入封装、继承和多态性等概念来建立一种对象层次结构，用以模拟公共行为的一个集合。当我们需要为分散的对象引入公共行为的时候，OOP则显得无能为力。也就是说，OOP允许你定义从上到下的关系，但并不适合定义从左到右的关系。例如日志功能。日志代码往往水平地散布在所有对象层次中，而与它所散布到的对象的核心功能毫无关系。在OOP设计中，它导致了大量代码的重复，而不利于各个模块的重用。**
 
 **将程序中的交叉业务逻辑（比如安全，日志，事务等），封装成一个切面，然后注入到目标对象（具体业务逻辑）中去。**
